@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Eclipse ###
+
+.settings/org.eclipse.jdt.ui.prefs
+.settings/*.snap
+.settings/*.bak

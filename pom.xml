@@ -26,26 +26,21 @@
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-commons</artifactId>
 			<version>1.10.0</version>
-			<scope>system</scope>
-			<systemPath>
-				${project.basedir}/libs/junit-platform-commons-1.10.0.jar</systemPath>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-engine</artifactId>
 			<version>1.10.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/junit-platform-engine-1.10.0.jar</systemPath>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-launcher</artifactId>
 			<version>1.10.0</version>
-			<scope>system</scope>
-			<systemPath>
-				${project.basedir}/libs/junit-platform-launcher-1.10.0.jar</systemPath>
+			<scope>test</scope>
 		</dependency>
 		<!-- ✅ JUnit 5 (Extension API) -->
 		<dependency>
