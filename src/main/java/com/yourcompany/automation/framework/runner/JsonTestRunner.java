@@ -83,9 +83,15 @@ public class JsonTestRunner {
 	 * @param args command-line arguments (ignored)
 	 */
 	public static void main(String[] args) {
-		String configPath = "C:\\work\\architecture\\pythingALML\\datasciense\\rohit\\ai-test-automation-framework\\src\\main\\resources\\test-config.json";
-		JsonTestRunner runner = new JsonTestRunner();
-		runner.run(configPath);
+		// String configPath =
+		// "C:\\work\\architecture\\pythingALML\\datasciense\\rohit\\ai-test-automation-framework\\src\\main\\resources\\test-config.json";
+		if (args.length == 1) {
+			String configPath = args[0];
+			JsonTestRunner runner = new JsonTestRunner();
+			runner.run(configPath);
+		} else {
+			System.out.println("Usage: java -jar your.jar <path-to-json>");
+		}
 	}
 
 	/**
