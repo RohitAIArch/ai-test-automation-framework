@@ -1,0 +1,56 @@
+{
+  "suites": [
+    {
+      "suiteName": "Regression Suite1",
+      "scenarios": [
+        {
+          "scenarioId": "SCN_001",
+          "scenarioName": "Scennario1",
+          "classes": [
+            {
+              "className": "com.org.framework.SampleFrameworkTest",
+              "methods": [
+                "testAddition_Pass",
+                "testSubtraction_Fail",
+                "testBoolean"
+              ]
+            }
+          ]
+        },
+        {
+          "scenarioId": "SCN_002",
+          "scenarioName": "Scennario12",
+          "classes": [
+            {
+              "className": "com.org.framework.SampleFrameworkTest",
+              "methods": [
+                "testAddition_Pass",
+                "testSubtraction_Fail",
+                "testBoolean"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "suiteName": "Regression Suite2",
+      "scenarios": [
+        {
+          "scenarioId": "SCN_003",
+          "scenarioName": "Scennario13",
+          "classes": [
+            {
+              "className": "com.org.framework.SampleFrameworkTest",
+              "methods": [
+                "testAddition_Pass",
+                "testSubtraction_Fail",
+                "testBoolean"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
