@@ -182,7 +182,8 @@ public class JsonTestRunner {
 				List<DiscoverySelector> selectors = new ArrayList<>();
 				scenario.getClassMethods().forEach((className, methods) -> {
 					try {
-						Class<?> clazz = Class.forName(className);
+						ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+						Class<?> clazz = classLoader.loadClass(className);
 						if (methods != null && !methods.isEmpty()) {
 							methods.forEach(methodName -> {
 								System.out.println("Adding method: " + methodName + " from class: " + className);

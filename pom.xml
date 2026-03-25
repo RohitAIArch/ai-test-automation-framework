@@ -1,58 +1,51 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- Proxy configuration -->
-
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.w3.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- 🔹 Update with your org -->
 	<groupId>com.yourcompany</groupId>
 	<artifactId>ai-test-automation-framework</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>AI Test Automation Framework</name>
-	<description>Custom JUnit 5 based automation framework with JSON reporting</description>
+	<description>JUnit 5 based automation framework with JSON test runner</description>
 
 	<properties>
 		<java.version>17</java.version>
 		<junit.version>5.10.0</junit.version>
+		<junit.platform.version>1.10.0</junit.platform.version>
 		<jackson.version>2.17.0</jackson.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-commons</artifactId>
-			<version>1.10.0</version>
-			<scope>test</scope>
-		</dependency>
 
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-engine</artifactId>
-			<version>1.10.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>1.10.0</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- ✅ JUnit 5 (Extension API) -->
+		<!-- JUnit API (compile only) -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>${junit.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
-		<!-- ✅ Needed if running tests inside framework (optional) -->
+		<!-- JUnit Engine (provided by client project) -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
+		<!-- JUnit Launcher (required by your runner) -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>${junit.platform.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
-		<!-- ✅ JSON Processing -->
+		<!-- Jackson (needed at runtime → keep compile scope) -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -60,18 +53,11 @@
 		</dependency>
 
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>https://repo.maven.apache.org/maven2</url>
-		</repository>
-	</repositories>
-	<build>
 
+	<build>
 		<plugins>
 
-
-			<!-- ✅ Compiler Plugin -->
+			<!-- Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -82,16 +68,14 @@
 				</configuration>
 			</plugin>
 
-			<!-- ✅ Surefire Plugin (JUnit 5 Support) 
+			<!-- Thin JAR Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.2.5</version>
-				<configuration>
-					<useModulePath>false</useModulePath>
-				</configuration>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
 			</plugin>
-			-->
+
+			<!-- Optional: Run via Maven -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -99,18 +83,9 @@
 				<configuration>
 					<mainClass>
 						com.yourcompany.automation.framework.runner.JsonTestRunner</mainClass>
-					<classpathScope>test</classpathScope>
-					<arguments>
-						<argument>-cp</argument>
-						<argument>
-							${project.build.outputDirectory};
-							${project.basedir}/libs/junit-platform-commons-1.10.0.jar;
-							${project.basedir}/libs/junit-platform-engine-1.10.0.jar;
-							${project.basedir}/libs/junit-platform-launcher-1.10.0.jar
-						</argument>
-					</arguments>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 
